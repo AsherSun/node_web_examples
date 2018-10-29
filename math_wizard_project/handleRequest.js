@@ -1,22 +1,39 @@
-function index () {
-
+function index (response) {
+  response({
+    code: 200,
+    contentType: 'text/html',
+    hanldeResult: '/index'
+  })
 }
 
-function add() {
-
+function add(response) {
+  response({
+    code: 200, 
+    contentType: 'text/html', 
+    hanldeResult: '/add'
+  })
 }
 
-function ride() {
-
+function ride(response) {
+  response({
+    code: 200, 
+    contentType: 'text/html', 
+    hanldeResult: '/ride'
+  })
 }
 
-function factorial() {
-
+function factorial(response) {
+  response({
+    code: 200, 
+    contentType: 'text/html', 
+    handleResult: '/factorial'
+  })
 }
 
 module.exports = {
   '/' : index,
-  '/index': add,
+  '/index': index,
+  '/add': add,
   '/ride': ride,
   '/factorial': factorial
 }
