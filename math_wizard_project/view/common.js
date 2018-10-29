@@ -4,7 +4,7 @@ exports.navMenu = function() {
       <p><a href='/'>home</a></p>
       <p><a href='/add'>add</a></p>
       <p><a href='/ride'>ride</a></p>
-      <p><a href='/factorial'>factorial</a></p>
+      <p><a href='/factorialAsync'>factorialAsync</a></p>
     </nav>
   </header>`
 }

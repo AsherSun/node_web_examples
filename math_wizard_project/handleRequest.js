@@ -27,11 +27,9 @@ function ride(response, url) {
   })
 }
 
-function factorial(response, url) {
-  response({
-    code: 200, 
-    contentType: 'text/html', 
-    hanldeResult: factorialView(url.searchParams)
+function factorialAsync(response, url) {
+  process.nextTick(() => {
+    factorialView(url.searchParams, response)
   })
 }
 
@@ -40,5 +38,5 @@ module.exports = {
   '/index': index,
   '/add': add,
   '/ride': ride,
-  '/factorial': factorial
+  '/factorialAsync': factorialAsync
 }

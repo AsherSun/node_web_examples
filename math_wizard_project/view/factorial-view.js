@@ -1,41 +1,60 @@
 const common = require('./common')
-function factorial(n) {
+function factorialAsync(n, done) {
   if(n == 0) {
-    return 1;
+    done(1);
   } else {
-    return n * factorial(n - 1);
+    process.nextTick(function() {
+      factorialAsync(n -1, function(value) {
+        done(n * value);
+      });
+    })
   }
 }
 
-function fibonacci(n) {
-  if (n === 1) {
-    return 1;
-  } else if (n === 2) {
-    return 1;
+function fibonacciAsync(n, done) {
+  if (n === 1 || n === 2) {
+    done(1);
   } else {
-    return fibonacci(n - 1) + fibonacci(n - 2)
+    process.nextTick(function() {
+      fibonacciAsync(n - 1, function(value1) {
+        process.nextTick(function() {
+          fibonacciAsync(n - 2, function(value2) {
+            done(value1 + value2);
+          });
+        });
+      });
+    });
   }
 }
-module.exports = function (req) {
+module.exports = function (req, response) {
   let num1 = req.get('a')
   if (!Math.floor(num1)) {
-    return common.page('factorial', common.navMenu(), `
-      <p>请输入正确的数字</p>
-      <p>Enter Numbers to see it's factorial </p>
-      <form name="add" action="/factorial" method="get">
-        A: <input type="text" name="a" />
-        <input type="submit" value="Submit"/>
-      </form>
-    `)
+    response({
+      code: 200,
+      contentType: 'text/html',
+      hanldeResult: common.page('factorialAsync', common.navMenu(), `
+        <p>请输入正确的数字</p>
+        <p>Enter Numbers to see it's factorialAsync </p>
+        <form name="add" action="/factorialAsync" method="get">
+          A: <input type="text" name="a" />
+          <input type="submit" value="Submit"/>
+        </form>
+      `)
+    }) 
   } else {
-    let fact = fibonacci(Math.floor(num1))
-    return common.page('factorial', common.navMenu(), `
-      ${!isNaN(num1) ? `<p class="result">${num1} factorial = ${fact}</p>` : '<p>请输入正确的数字</p>'}
-      <p>Enter Numbers to see it's factorial </p>
-      <form name="add" action="/factorial" method="get">
-        A: <input type="text" name="a" />
-        <input type="submit" value="Submit"/>
-      </form>
-    `)
+    fibonacciAsync(Math.floor(num1), function (result) {
+      response({
+        code: 200,
+        contentType: 'text/html', 
+        hanldeResult: common.page('factorialAsync', common.navMenu(), `
+          ${!isNaN(num1) ? `<p class="result">${num1} factorial = ${result}</p>` : '<p>请输入正确的数字</p>'}
+          <p>Enter Numbers to see it's factorialAsync </p>
+          <form name="add" action="/factorialAsync" method="get">
+            A: <input type="text" name="a" />
+            <input type="submit" value="Submit"/>
+          </form>
+        `)
+      })
+    })
   }
 }
