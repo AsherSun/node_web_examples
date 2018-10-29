@@ -10,4 +10,5 @@ module.exports = function(route, routeHandle) {
       res.end(options.hanldeResult);
     })
   }).listen(8801);
+  console.log("http://localhost:8801/")
 }
