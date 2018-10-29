@@ -28,8 +28,7 @@ module.exports = function (req) {
       </form>
     `)
   } else {
-    console.log(Math.floor(num1))
-    let fact = factorial(Math.floor(num1))
+    let fact = fibonacci(Math.floor(num1))
     return common.page('factorial', common.navMenu(), `
       ${!isNaN(num1) ? `<p class="result">${num1} factorial = ${fact}</p>` : '<p>请输入正确的数字</p>'}
       <p>Enter Numbers to see it's factorial </p>
