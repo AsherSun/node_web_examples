@@ -1,32 +1,37 @@
+const addView = require('./view/add-view');
+const common = require('./view/common');
+const rideView = require('./view/ride-view');
+const factorialView = require('./view/factorial-view')
+
 function index (response) {
   response({
     code: 200,
     contentType: 'text/html',
-    hanldeResult: '/index'
+    hanldeResult: common.page('Index', common.navMenu(), '')
   })
 }
 
-function add(response) {
+function add(response, url) {
   response({
     code: 200, 
     contentType: 'text/html', 
-    hanldeResult: '/add'
+    hanldeResult: addView(url.searchParams)
   })
 }
 
-function ride(response) {
+function ride(response, url) {
   response({
     code: 200, 
     contentType: 'text/html', 
-    hanldeResult: '/ride'
+    hanldeResult: rideView(url.searchParams)
   })
 }
 
-function factorial(response) {
+function factorial(response, url) {
   response({
     code: 200, 
     contentType: 'text/html', 
-    handleResult: '/factorial'
+    hanldeResult: factorialView(url.searchParams)
   })
 }
 
