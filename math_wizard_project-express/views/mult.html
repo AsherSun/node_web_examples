@@ -1,0 +1,13 @@
+<% if (req.a && req.b) { %>
+  <p>
+    <%= req.a %> * <%= req.b %> = <%= req.result %>
+  </p>
+<% } %>
+
+<p>Enter numbers to multiplay</p>
+
+<form action="/mult" name="mult" method="get">
+  A: <input type="number" name="a"> <br />
+  B: <input type="number" name="b">
+  <input type="submit" value="Submit">
+</form>

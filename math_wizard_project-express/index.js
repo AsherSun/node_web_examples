@@ -5,19 +5,23 @@ const utils = require('./utils')
 const app = express.createServer(
   express.logger()
 );
+
+app.use(express.static(__dirname + '/static'));
+app.engine('ejs', equire('ejs').renderFile);
+/* 
 app.register('.html', require('ejs'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.set('view options', {layout: true})
+app.set('view options', {layout: true}) */
 
-app.configure(function() {
-  app.use(app.router);
-  app.use(express.static(__dirname + '/filez'));
-  app.use(express.errorHandler({
-    dumpExceptions: true,
-    showStack: true
-  }))
-});
+// app.configure(function() {
+//   app.use(app.router);
+//   app.use(express.static(__dirname + '/filez'));
+//   app.use(express.errorHandler({
+//     dumpExceptions: true,
+//     showStack: true
+//   }))
+// });
 
 app.get('/', function(req, res) {
   res.render('home.html', {title: 'Math wizard'});
