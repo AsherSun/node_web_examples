@@ -1,7 +1,9 @@
+
+const cp = require('child_process');
 const addView = require('./view/add-view');
 const common = require('./view/common');
-const rideView = require('./view/ride-view');
-const factorialView = require('./view/factorial-view')
+const rideView = require('./view/ride-view')
+
 
 function index (response) {
   response({
@@ -28,9 +30,16 @@ function ride(response, url) {
 }
 
 function factorialAsync(response, url) {
-  process.nextTick(() => {
-    factorialView(url.searchParams, response)
-  })
+  let childProcess = cp.fork('./view/factorial-view')
+  childProcess.on('message', (m) => {
+    console.log('父进程收到消息：', m)
+    response({
+      code: 200,
+      contentType: 'text/html',
+      hanldeResult: m.page
+    })
+  });
+  childProcess.send({url: url})
 }
 
 module.exports = {
