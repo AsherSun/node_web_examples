@@ -26,7 +26,7 @@ app.get('/square', htutil.loadParams, function(req, res) {
 });
 app.get('/fibonacci', htutil.loadParams, function(req, res) {
     if (req.a) {
-/*        var httpreq = require('http').request({
+    /*var httpreq = require('http').request({
           host: "localhost",
           port: 3002,
           path: "/fibonacci/"+Math.floor(req.a),
