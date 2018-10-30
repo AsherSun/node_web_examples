@@ -1,0 +1,22 @@
+{
+  "name": "math-wizard-connect",
+  "version": "1.0.0",
+  "description": "使用connect 框架实现 math-wizard",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AsherSun/node_web_examples.git"
+  },
+  "author": "asher sun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AsherSun/node_web_examples/issues"
+  },
+  "homepage": "https://github.com/AsherSun/node_web_examples#readme",
+  "dependencies": {
+    "connect": "^3.6.6"
+  }
+}

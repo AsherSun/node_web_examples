@@ -1,0 +1,8 @@
+# node modules
+node_modules/
+
+#files config
+.idea/*
+.tea/
+.DS_Store
+.vscode
