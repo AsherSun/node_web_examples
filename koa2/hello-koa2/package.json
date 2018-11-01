@@ -1,15 +1,14 @@
 {
-  "name": "chap04",
+  "name": "hello-koa2",
   "version": "1.0.0",
-  "description": "",
-  "main": "app-connect.js",
+  "description": "初始koa2中的async await",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "asher sun",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^2.6.1",
-    "express": "^2.3.11"
+    "koa2": "^2.0.0-alpha.7"
   }
 }
